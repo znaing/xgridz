@@ -1,76 +1,128 @@
 import 'package:flutter/material.dart';
 
 void main() => runApp(MaterialApp(
-    home: Scaffold (
+    home: Home()),// HomePage
+);
+
+class Home extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold (
       appBar: PreferredSize(
-          preferredSize: Size.fromHeight(80),
+        preferredSize: Size.fromHeight(80),
         child: AppBar(
-          title: Row(
-              children: <Widget>[
+          flexibleSpace: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
               //Text('Help'),
-              IconButton(
-                 icon: Icon(Icons.help),
-                  iconSize: 40,
-                  padding: EdgeInsets.only(left: 70),
-                onPressed:(){
-                   //do something
-                  },
-                tooltip: 'Help',
-              ),
-            Stack(
-              alignment: Alignment.center,
-              children: <Widget>[
-                //Text('Search'),
-                IconButton(
-                  icon: Icon(Icons.search),
-                  iconSize: 40,
-                  padding: EdgeInsets.only(left: 140),
-                  onPressed: (){
-                    // do something
-                  },
-                  tooltip: 'Search',
-                ),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  IconButton(
+                     icon:Icon(
+                        Icons.help_outline_outlined,
+                        color: Colors.white,
+                        size: 41,
+                    ),
+                    onPressed:(){
+                      //do something
+                    },
+                  ),
+                  Text('Help',
+                      style: TextStyle(
+                        fontSize: 20,
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                      )),
                 ],
-                ),
-                Expanded(
-                  child: Center(child: Text('XGridZ',
-                    style: TextStyle(fontSize: 45),
+              ),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  IconButton(
+                    icon:Icon(
+                      Icons.search,
+                      color: Colors.white,
+                      size: 41,
+                    ),
+                    onPressed:(){
+                      //do something
+                    },
                   ),
+                  Text('Search',
+                      style: TextStyle(
+                        fontSize: 20,
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                      )),
+                ],
+              ),
+              Text(
+                'XGridZ',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 55,
+                )
+              ),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  IconButton(
+                    icon:Icon(
+                      Icons.settings,
+                      color: Colors.white,
+                      size: 41,
+                    ),
+                    onPressed:(){
+                      //do something
+                    },
                   ),
-                  )
-                  ],
+                  Text('Settings',
+                      style: TextStyle(
+                        fontSize: 20,
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                      )),
+                ],
+              ),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  IconButton(
+                    icon:Icon(
+                      Icons.arrow_forward_rounded,
+                      color: Colors.white,
+                      size: 41,
+                    ),
+                    onPressed:(){
+                      //do something
+                    },
                   ),
-                  automaticallyImplyLeading: false,
-                  centerTitle: true,
-                  actions: <Widget>[
-                Row(
-                      children: <Widget>[
-                       // Text('Settings'),
-                        IconButton(
-                            icon: Icon(Icons.settings),
-                            iconSize: 40,
-                            padding: EdgeInsets.only(right: 140),
-                            onPressed: (){
-                              // do something
-                            },
-                            tooltip: 'Settings',
-                        ),
-                        //Text('Start', style: TextStyle(fontSize: 40)), failed attempt to add text to button
-                        IconButton(
-                            icon: Icon(Icons.play_circle_fill),
-                            iconSize: 40,
-                            padding: EdgeInsets.only(right: 70),
-                            onPressed: (){
-                              // do something
-                            },
-                          tooltip: 'Start',
-                        ),
-                      ],
-                      )
-                      ],
-                      ),
-                      ),
-                      )
-                      )
-                      );
+                  Text('Start',
+                      style: TextStyle(
+                        fontSize: 20,
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                      )),
+                ],
+              ),
+              ],
+            ),
+        ),
+      ),
+      body: Center(
+        child: Text("Filler for content later", style: TextStyle(
+         fontSize: 50,
+      ),
+      )
+      )
+    );
+
+  }
+}
 

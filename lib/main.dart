@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:xgridz/screens/LandingScreen.dart';
-import 'package:flutter/material.dart';
 import 'package:xgridz/screens/home.dart';
 import 'package:xgridz/screens/loading.dart';
 import 'package:xgridz/screens/settings.dart';

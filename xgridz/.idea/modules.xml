@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/xgridz.iml" filepath="$PROJECT_DIR$/xgridz.iml" />
+      <module fileurl="file://$PROJECT_DIR$/android/xgridz_android.iml" filepath="$PROJECT_DIR$/android/xgridz_android.iml" />
+    </modules>
+  </component>
+</project>

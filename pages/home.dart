@@ -132,35 +132,193 @@ class _HomeState extends State<Home> {
           ),
         ),
       ),
-      body: Container(
-        padding: EdgeInsets.all(140),
+      body: Padding(
+        padding: const EdgeInsets.fromLTRB(30.0, 40.0, 30.0, 0),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            ListView(
-                scrollDirection: Axis.vertical,
-                shrinkWrap: true,
-                padding: EdgeInsets.all(0),
-                children: <Widget>[
-                  Container(
-                    color: Colors.grey[200],
-                    child: Center(child: Text('Entry 1', style: TextStyle(fontSize: 30))),
+          children: <Widget>[
+            Center(
+              child: Text(
+                'Current User: Jane D.',
+                style: TextStyle(
+                  color: Colors.blue[400],
+                  fontWeight: FontWeight.bold,
+                  fontSize: 30.0,
+                  letterSpacing: 2.0,
+                ),
+                textAlign: TextAlign.center,
+              ),
+            ),
+            Divider(
+              color: Colors.grey[800],
+              height: 30.0,
+            ),
+            Row(
+              children: <Widget>[
+                Expanded(
+                    flex: 1,
+                    child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: <Widget>[
+                          Center(
+                            child: Icon(
+                              Icons.add_box_outlined,
+                              size: 60,
+                              color: Colors.grey[400],
+                            ),
+                          ),
+                          Center(
+                              child: Text(
+                                'Add User',
+                                style: TextStyle(
+                                  color: Colors.blue[400],
+                                  fontSize: 30.0,
+                                  letterSpacing: 1.0,
+                                ),
+                                textAlign: TextAlign.center,
+                              )
+                          )
+                        ]
+                    )
+                ),
+                Expanded(
+                  flex: 4,
+                  child: ListView(
+                      scrollDirection: Axis.vertical,
+                      shrinkWrap: true,
+                      padding: EdgeInsets.all(10),
+                      children: <Widget>[
+                        Container(
+                          height: 50,
+                          color: Colors.grey[200],
+                          child: Align(
+                              alignment: Alignment.centerLeft,
+                              child: Text(
+                                'Tim K.',
+                                style: TextStyle(
+                                    fontSize: 30
+                                ),
+                              )
+                          ),
+                        ),
+                        Container(
+                          height: 50,
+                          color: Colors.amber[200],
+                          child: Align(
+                              alignment: Alignment.centerLeft,
+                              child: Text(
+                                'Jane D.',
+                                style: TextStyle(
+                                    fontSize: 30
+                                ),
+                              )
+                          ),
+                        ),
+                        Container(
+                          height: 50,
+                          color: Colors.grey[200],
+                          child: Align(
+                              alignment: Alignment.centerLeft,
+                              child: Text(
+                                'John R.',
+                                style: TextStyle(
+                                    fontSize: 30
+                                ),
+                              )
+                          ),
+                        ),
+                        Container(
+                          height: 50,
+                          color: Colors.grey[200],
+                          child: Align(
+                              alignment: Alignment.centerLeft,
+                              child: Text(
+                                'Helen Y.',
+                                style: TextStyle(
+                                    fontSize: 30
+                                ),
+                              )
+                          ),
+                        ),
+                        Container(
+                          height: 50,
+                          color: Colors.grey[200],
+                          child: Align(
+                              alignment: Alignment.centerLeft,
+                              child: Text(
+                                'Andy N.',
+                                style: TextStyle(
+                                    fontSize: 30
+                                ),
+                              )
+                          ),
+                        ),
+                      ]
                   ),
-                  Container(
-                    color: Colors.grey[200],
-                    child: Center(child: Text('Entry 2', style: TextStyle(fontSize: 30))),
+                ),
+                Expanded(
+                    flex: 1,
+                    child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: <Widget>[
+                          Center(
+                            child: Icon(
+                              Icons.delete,
+                              size: 60,
+                              color: Colors.grey[400],
+                            ),
+                          ),
+                          Center(
+                              child: Text(
+                                'Delete User',
+                                style: TextStyle(
+                                  color: Colors.blue[400],
+                                  fontSize: 30.0,
+                                  letterSpacing: 1.0,
+                                ),
+                                textAlign: TextAlign.center,
+                              )
+                          )
+                        ]
+                    )
+                ),
+              ],
+            ),
+            SizedBox(height: 140.0),
+            Divider(
+              color: Colors.grey[800],
+              height: 30.0,
+            ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                Center(
+                  child: Icon(
+                    Icons.grid_view,
+                    size: 60,
+                    color: Colors.grey[400],
                   ),
-                  Container(
-                    color: Colors.grey[200],
-                    child: Center(child: Text('Entry 3', style: TextStyle(fontSize: 30))),
-                  ),
-                ]
+                ),
+                Center(
+                    child: Text(
+                      'XGridZ',
+                      style: TextStyle(
+                        color: Colors.amber[400],
+                        fontSize: 30.0,
+                        letterSpacing: 1.0,
+                        fontWeight: FontWeight.bold,
+                      ),
+                      textAlign: TextAlign.center,
+                    )
+                )
+              ],
             ),
           ],
-        )  ,
+        ),
       ),
     );
-
   }
 }

@@ -5,7 +5,6 @@ import 'package:xgridz/constants/SettingsValues.dart'; //remove later
 necessary code for the icons and where they go. The base app bar is used for the home screen and the returning one I used
 for the Start screen so far. Not sure how useful this will be yet*/
 class BaseAppBar {
-
   PreferredSize baseAppBar(BuildContext context) {
     return PreferredSize(
       preferredSize: Size.fromHeight(75),
@@ -28,17 +27,17 @@ class BaseAppBar {
       ),
     );
   }
-  PreferredSize returningAppBar(BuildContext context) {
+//this function is currently not in use
+/*  PreferredSize returningAppBar(BuildContext context) {
     return PreferredSize(
       preferredSize: Size.fromHeight(75),
       child: AppBar(
         leading: IconButton(
-              icon: Icon(Icons.arrow_back, color: Colors.white),
-              iconSize: 41,
-              onPressed:(){
-                Navigator.pop(context);
-              }
-            ),
+            icon: Icon(Icons.arrow_back, color: Colors.white),
+            iconSize: 41,
+            onPressed: () {
+              Navigator.pop(context);
+            }),
         flexibleSpace: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -52,31 +51,39 @@ class BaseAppBar {
       ),
     );
   }
+*/
   Widget appBarIcon(IconData givenIcon, String iconName, BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        IconButton(
-          icon: Icon(
-            givenIcon,
-            color: Colors.white,
-            size: 41,
-          ),
-          onPressed: () {
-            onTap(iconName, context);
-          },
+    return Container(
+      height: 100.0,
+      child: InkWell(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            Center(
+              child: Icon(
+                givenIcon,
+                size: 40,
+                color: Colors.white,
+              ),
+            ),
+            Center(
+              child: Text(
+                iconName,
+                style: TextStyle(
+                  fontSize: 20,
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                ),
+                textAlign: TextAlign.center,
+              ),
+            ),
+          ],
         ),
-        Text(
-          iconName,
-          textAlign: TextAlign.center,
-          style: TextStyle(
-            fontSize: 20,
-            color: Colors.white,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-      ],
+        onTap: () {
+          onTap(iconName, context);
+        },
+      ),
     );
   }
 
@@ -93,13 +100,16 @@ class BaseAppBar {
                     style: TextStyle(fontSize: 50, color: Colors.blue),
                   ),
                   content: Text(
-                      'XGridZ is an AAC evaluation tool, you can begin an evaluation by selecting a user profile, then tapping the "Start" icon on the top right.You can also '
-                      'configure the test by tapping the "Settings" icon on the top bar.',
-                      style:
-                          TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
+                    'XGridZ is an AAC evaluation tool, you can begin an evaluation by selecting a user profile, then tapping the "Start" icon on the top right.You can also '
+                    'configure the test by tapping the "Settings" icon on the top bar.',
+                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                  ),
                   actions: [
                     TextButton(
-                      child: Text('Ok', style: TextStyle(fontSize: 30)),
+                      child: Text(
+                        'Ok',
+                        style: TextStyle(fontSize: 30),
+                      ),
                       onPressed: () {
                         Navigator.pop(context);
                       },
@@ -120,11 +130,9 @@ class BaseAppBar {
         }
       case "Start":
         {
-          Navigator.pushNamed(context, '/start');
+          Navigator.pushReplacementNamed(context, '/start');
           break;
         }
-      case "Start Test":
-          Navigator.pushNamed(context, '/Test');
     }
   }
 }

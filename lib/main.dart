@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:xgridz/screens/home.dart';
+import 'package:xgridz/screens/Home.dart';
 import 'package:xgridz/screens/Loading.dart';
 import 'package:xgridz/screens/Settings.dart';
 import 'package:xgridz/screens/Start.dart';

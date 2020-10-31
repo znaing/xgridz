@@ -1,0 +1,4 @@
+#Fri Oct 30 15:47:08 PDT 2020
+base.0=C\:\\Users\\Nick\\AndroidStudioProjects\\xgridz-main\\build\\app\\intermediates\\dex\\debug\\mergeDexDebug\\out\\classes.dex
+path.0=classes.dex
+renamed.0=classes.dex

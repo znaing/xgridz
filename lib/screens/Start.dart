@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:xgridz/classes/BaseAppBar.dart';
 
 class Start extends StatefulWidget {
   @override
@@ -6,6 +7,10 @@ class Start extends StatefulWidget {
 }
 
 class _StartState extends State<Start> {
+  var _horizontalVal = ['1', '2', '3', '4', '5', '6', '7', '8'];
+  var _verticalVal = ['1', '2', '3', '4'];
+  var _currentHorizontalSelected = '4';
+  var _currentVerticalSelected = '4';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,7 +24,7 @@ class _StartState extends State<Start> {
               Navigator.pushReplacementNamed(context, '/home');
             },
           ),
-          title: Text('Custom Grids', style: TextStyle(fontSize: 40)),
+          title: Center(child: Text('Custom Grids', style: TextStyle(fontSize: 40))),
         ),
       ),
       body: Container(
@@ -53,13 +58,21 @@ class _StartState extends State<Start> {
                 Container(
                   margin: const EdgeInsets.only(
                       left: 180, top: 0, right: 0, bottom: 0),
-                  child: TextField(
-                    decoration: InputDecoration(
-                      border: InputBorder.none,
-                      hintText: ('Enter a number between 1 and 8'),
+                  child: DropdownButton<String>(
+                    items: _horizontalVal.map((String dropDownStringItem){
+                      return DropdownMenuItem<String>(
+                        value: dropDownStringItem,
+                        child: Text(dropDownStringItem, style: TextStyle(fontSize: 24)),
+                      );
+                    }).toList(),
+                    onChanged: (String newValueSelected) {
+                      setState(() {
+                        this._currentHorizontalSelected = newValueSelected;
+                      });
+                    },
+                    value: _currentHorizontalSelected,
                     ),
                   ),
-                ),
                 Container(
                   margin: const EdgeInsets.only(
                       left: 180, top: 50, right: 0, bottom: 0),
@@ -71,16 +84,24 @@ class _StartState extends State<Start> {
                 Container(
                   margin: const EdgeInsets.only(
                       left: 180, top: 0, right: 0, bottom: 0),
-                  child: TextField(
-                    decoration: InputDecoration(
-                      border: InputBorder.none,
-                      hintText: ('Enter a number between 1 and 4'),
-                    ),
+                  child: DropdownButton<String>(
+                    items: _verticalVal.map((String dropDownStringItem){
+                      return DropdownMenuItem<String>(
+                        value: dropDownStringItem,
+                        child: Text(dropDownStringItem, style: TextStyle(fontSize: 24)),
+                      );
+                    }).toList(),
+                    onChanged: (String newValueSelected) {
+                      setState(() {
+                        this._currentVerticalSelected = newValueSelected;
+                      });
+                    },
+                    value: _currentVerticalSelected,
                   ),
                 ),
                 Container(
                   height: 50.0,
-                  child: EnterButton(),
+                  child: EnterButton(_currentHorizontalSelected, _currentVerticalSelected),
                   margin: const EdgeInsets.only(
                       left: 320, top: 50, right: 320, bottom: 0),
                 ),
@@ -94,6 +115,13 @@ class _StartState extends State<Start> {
 }
 
 class EnterButton extends StatelessWidget {
+  int horizontalVal;
+  int verticalVal;
+  EnterButton(var horizontalVal, var verticalVal){
+    this.horizontalVal = int.parse(horizontalVal);
+    this.verticalVal = int.parse(verticalVal);
+  }
+
   @override
   Widget build(BuildContext context) {
     return (RaisedButton.icon(
@@ -101,6 +129,8 @@ class EnterButton extends StatelessWidget {
       color: Colors.blue,
       onPressed: () {
         // Respond to button press
+        horizontalValue = horizontalVal;
+        verticalValue = verticalVal;
         Navigator.pushReplacementNamed(context, '/grids');
       },
       icon: Icon(Icons.add, size: 18),

@@ -4,6 +4,9 @@ import 'package:xgridz/constants/SettingsValues.dart'; //remove later
 /* Dart file I created to store the AppBar that might be reused on several different pages, this page contains all the
 necessary code for the icons and where they go. The base app bar is used for the home screen and the returning one I used
 for the Start screen so far. Not sure how useful this will be yet*/
+//Global Variable for Grids, maybe we can find a cleaner way of doing this later
+int horizontalValue = 4;
+int verticalValue = 4;
 class BaseAppBar {
   PreferredSize baseAppBar(BuildContext context) {
     return PreferredSize(
@@ -52,6 +55,8 @@ class BaseAppBar {
     );
   }
 */
+//Global horizontal and vertical values for grids
+
   Widget appBarIcon(IconData givenIcon, String iconName, BuildContext context) {
     return Container(
       height: 100.0,
@@ -136,3 +141,4 @@ class BaseAppBar {
     }
   }
 }
+

@@ -18,144 +18,146 @@ class _HomeState extends State<Home> {
         appBar: new BaseAppBar().baseAppBar(context),
         body: Padding(
           padding: const EdgeInsets.fromLTRB(30.0, 40.0, 30.0, 0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Center(
-                child: Text(
-                  currentUser == ''
-                      ? "Current User: None"
-                      : "Current User: " + currentUser,
-                  style: TextStyle(
-                    color: Colors.blue[400],
-                    fontWeight: FontWeight.bold,
-                    fontSize: 30.0,
-                    letterSpacing: 2.0,
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Center(
+                  child: Text(
+                    currentUser == ''
+                        ? "Current User: None"
+                        : "Current User: " + currentUser,
+                    style: TextStyle(
+                      color: Colors.blue[400],
+                      fontWeight: FontWeight.bold,
+                      fontSize: 30.0,
+                      letterSpacing: 2.0,
+                    ),
+                    textAlign: TextAlign.center,
                   ),
-                  textAlign: TextAlign.center,
                 ),
-              ),
-              Divider(
-                color: Colors.grey[800],
-                height: 30.0,
-              ),
-              Container(
-                height: 400,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Expanded(
-                      flex: 1,
-                      child: Container(
-                        height: 130.0,
-                        child: InkWell(
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: <Widget>[
-                              Center(
-                                child: Icon(
-                                  Icons.add_box_outlined,
-                                  size: 60,
-                                  color: Colors.grey[400],
-                                ),
-                              ),
-                              Center(
-                                child: Text(
-                                  'Add User',
-                                  style: TextStyle(
-                                    color: Colors.blue[400],
-                                    fontSize: 30.0,
-                                    letterSpacing: 1.0,
+                Divider(
+                  color: Colors.grey[800],
+                  height: 30.0,
+                ),
+                Container(
+                  height: 400,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Expanded(
+                        flex: 1,
+                        child: Container(
+                          height: 130.0,
+                          child: InkWell(
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: <Widget>[
+                                Center(
+                                  child: Icon(
+                                    Icons.add_box_outlined,
+                                    size: 60,
+                                    color: Colors.grey[400],
                                   ),
-                                  textAlign: TextAlign.center,
                                 ),
-                              ),
-                            ],
+                                Center(
+                                  child: Text(
+                                    'Add User',
+                                    style: TextStyle(
+                                      color: Colors.blue[400],
+                                      fontSize: 30.0,
+                                      letterSpacing: 1.0,
+                                    ),
+                                    textAlign: TextAlign.center,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            onTap: () {
+                              addUser();
+                            },
                           ),
-                          onTap: () {
-                            addUser();
-                          },
                         ),
                       ),
-                    ),
-                    Expanded(
-                      flex: 4,
-                      child: ListView(
-                          scrollDirection: Axis.vertical,
-                          shrinkWrap: true,
-                          padding: EdgeInsets.all(10),
-                          children: //maps users from user list to userContainer Widgets
-                              users.map((s) => userContainer(s)).toList()),
-                    ),
-                    Expanded(
-                      flex: 1,
-                      child: Container(
-                        height: 130.0,
-                        child: InkWell(
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: <Widget>[
-                              Center(
-                                child: Icon(
-                                  Icons.delete,
-                                  size: 60,
-                                  color: Colors.grey[400],
-                                ),
-                              ),
-                              Center(
-                                child: Text(
-                                  'Delete User',
-                                  style: TextStyle(
-                                    color: Colors.blue[400],
-                                    fontSize: 30.0,
-                                    letterSpacing: 1.0,
+                      Expanded(
+                        flex: 4,
+                        child: ListView(
+                            scrollDirection: Axis.vertical,
+                            shrinkWrap: true,
+                            padding: EdgeInsets.all(10),
+                            children: //maps users from user list to userContainer Widgets
+                                users.map((s) => userContainer(s)).toList()),
+                      ),
+                      Expanded(
+                        flex: 1,
+                        child: Container(
+                          height: 130.0,
+                          child: InkWell(
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: <Widget>[
+                                Center(
+                                  child: Icon(
+                                    Icons.delete,
+                                    size: 60,
+                                    color: Colors.grey[400],
                                   ),
-                                  textAlign: TextAlign.center,
                                 ),
-                              ),
-                            ],
+                                Center(
+                                  child: Text(
+                                    'Delete User',
+                                    style: TextStyle(
+                                      color: Colors.blue[400],
+                                      fontSize: 30.0,
+                                      letterSpacing: 1.0,
+                                    ),
+                                    textAlign: TextAlign.center,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            onTap: () {
+                              deleteUser();
+                            },
                           ),
-                          onTap: () {
-                            deleteUser();
-                          },
                         ),
+                      ),
+                    ],
+                  ),
+                ),
+                Divider(
+                  color: Colors.grey[800],
+                  height: 30.0,
+                ),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: <Widget>[
+                    Center(
+                      child: Icon(
+                        Icons.grid_view,
+                        size: 60,
+                        color: Colors.grey[400],
+                      ),
+                    ),
+                    Center(
+                      child: Text(
+                        'XGridZ',
+                        style: TextStyle(
+                          color: Colors.amber[400],
+                          fontSize: 30.0,
+                          letterSpacing: 1.0,
+                          fontWeight: FontWeight.bold,
+                        ),
+                        textAlign: TextAlign.center,
                       ),
                     ),
                   ],
                 ),
-              ),
-              Divider(
-                color: Colors.grey[800],
-                height: 30.0,
-              ),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: <Widget>[
-                  Center(
-                    child: Icon(
-                      Icons.grid_view,
-                      size: 60,
-                      color: Colors.grey[400],
-                    ),
-                  ),
-                  Center(
-                    child: Text(
-                      'XGridZ',
-                      style: TextStyle(
-                        color: Colors.amber[400],
-                        fontSize: 30.0,
-                        letterSpacing: 1.0,
-                        fontWeight: FontWeight.bold,
-                      ),
-                      textAlign: TextAlign.center,
-                    ),
-                  ),
-                ],
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

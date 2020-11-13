@@ -7,6 +7,20 @@ for the Start screen so far. Not sure how useful this will be yet*/
 //Global Variable for Grids, maybe we can find a cleaner way of doing this later
 int horizontalValue = 4;
 int verticalValue = 4;
+int gridValue = 5;
+int counter = 0;
+int scoreCount = 0;
+class ImageSelector {
+  final String imagePick;
+  final String name;
+  final String type;
+
+  const ImageSelector({
+    @required this.imagePick,
+    @required this.name,
+    @required this.type,
+  });
+}
 class BaseAppBar {
   PreferredSize baseAppBar(BuildContext context) {
     return PreferredSize(

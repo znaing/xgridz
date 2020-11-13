@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:xgridz/classes/BaseAppBar.dart';
+String imageName = 'image0';
 class ImageGenerator{
   ImageGenerator();
 }
@@ -8,6 +9,8 @@ class Grids extends StatefulWidget {
   @override
   _GridsState createState() => _GridsState();
 }
+
+
 
 class _GridsState extends State<Grids> {
   @override
@@ -45,36 +48,45 @@ class _GridsState extends State<Grids> {
                          ),
                        ),
                        GridView.count(
-                       shrinkWrap: true,
-                          // Create a grid with 2 columns. If you change the scrollDirection to
-                          // horizontal, this produces 2 rows.
-                       crossAxisCount: horizontalValue,// setting this to horizontal value properly fits correct amount of items in grid rows
+                         shrinkWrap: true,
+                         // Create a grid with 2 columns. If you change the scrollDirection to
+                         // horizontal, this produces 2 rows.
+                         padding: EdgeInsets.all(16.0),
+                         crossAxisCount: horizontalValue,// setting this to horizontal value properly fits correct amount of items in grid rows
+                         mainAxisSpacing: 20.0,
+                         crossAxisSpacing: 20.0,
+                         //_buildGridTiles(verticalValue * horizontalValue),
                          children: List.generate(verticalValue * horizontalValue, (index) {
-                       return Card(
-                          elevation: 3.0,
-                           margin: EdgeInsets.all(10),
-                           child: InkWell(
-                           splashColor: Colors.blue,
-                           splashFactory: InkRipple.splashFactory,
-                         onTap: () {
-                             counter++;
-                            if (counter < gridValue){
-                              Navigator.pushReplacementNamed(context, '/grids');
-                            }
-                            else{
-                              counter = 0;
-                              Navigator.pushReplacementNamed(context, '/results');
-                            }
+                            imageName = index < 9 ?
+                           'images/image0${index + 1}.jpg' : 'images/image${index + 1}.jpg';
+                           return Card(
+                             elevation: 3.0,
+                             margin: EdgeInsets.all(10),
+                             child: InkWell(
+                               splashColor: Colors.blue,
+                               splashFactory: InkRipple.splashFactory,
+                               onTap: () {
+                                 counter++;
+                                 if (counter < gridValue){
+                                   Navigator.pushReplacementNamed(context, '/grids');
+                                 }
+                                 else{
+                                   counter = 0;
+                                   Navigator.pushReplacementNamed(context, '/results');
+                                 }
 
-                           },
-                             child: Container(
-                                 child: Center(child: Text('$ImageSelector', style: TextStyle(fontSize: 50)),),
-                                ),
+                               },
+                               child: Container(
+                                 child: new Image.asset(
+                                     imageName,
+                                     fit: BoxFit.fill
+                                 ),
+                             )
+                           )
+                           );
+                         },
                          ),
-                         );
-              },
-            ),
-          ),
+                       ),
                      ],
                    ),
                  ),
@@ -82,3 +94,5 @@ class _GridsState extends State<Grids> {
     );
       }
     }
+
+

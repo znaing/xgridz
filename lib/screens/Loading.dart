@@ -15,12 +15,11 @@ class _LoadingState extends State<Loading> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blueGrey[600],
+      backgroundColor: Colors.white,
         body: Center(
-          child: Text('Loading...',
-          style: TextStyle(fontSize: 60, color: Colors.white),
+          child: Text('XGRIDZ',
+          style: TextStyle(fontSize: 60, color: Colors.blue),
       )
-
     ),
     );
   }

@@ -66,7 +66,7 @@ class _HomeState extends State<Home> {
                                     'Add User',
                                     style: TextStyle(
                                       color: Colors.blue[400],
-                                      fontSize: 30.0,
+                                      fontSize: 24.0,
                                       letterSpacing: 1.0,
                                     ),
                                     textAlign: TextAlign.center,
@@ -110,7 +110,7 @@ class _HomeState extends State<Home> {
                                     'Delete User',
                                     style: TextStyle(
                                       color: Colors.blue[400],
-                                      fontSize: 30.0,
+                                      fontSize: 24.0,
                                       letterSpacing: 1.0,
                                     ),
                                     textAlign: TextAlign.center,

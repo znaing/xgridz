@@ -1,7 +1,12 @@
+import 'dart:collection';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:xgridz/classes/BaseAppBar.dart';
+import 'dart:math';
+
 String imageName = 'image0';
+
 class ImageGenerator{
   ImageGenerator();
 }
@@ -10,11 +15,11 @@ class Grids extends StatefulWidget {
   _GridsState createState() => _GridsState();
 }
 
-
-
 class _GridsState extends State<Grids> {
   @override
   Widget build(BuildContext context) {
+    int imageSize = 32;
+    Set<int> intSet = new HashSet<int>();
     return SafeArea(
       child: Scaffold(
         appBar: PreferredSize(
@@ -57,7 +62,13 @@ class _GridsState extends State<Grids> {
                          crossAxisSpacing: 20.0,
                          //_buildGridTiles(verticalValue * horizontalValue),
                          children: List.generate(verticalValue * horizontalValue, (index) {
-                            imageName = index < 9 ?
+                           Random random = new Random();
+                           index = random.nextInt(imageSize);
+                           while(intSet.contains(index)) {
+                             index = random.nextInt(imageSize);
+                           }
+                           intSet.add(index);
+                           imageName = index < 9 ?
                            'images/image0${index + 1}.jpg' : 'images/image${index + 1}.jpg';
                            return Card(
                              elevation: 3.0,
@@ -66,6 +77,7 @@ class _GridsState extends State<Grids> {
                                splashColor: Colors.blue,
                                splashFactory: InkRipple.splashFactory,
                                onTap: () {
+                                 intSet.clear();
                                  counter++;
                                  if (counter < gridValue){
                                    Navigator.pushReplacementNamed(context, '/grids');
@@ -74,7 +86,6 @@ class _GridsState extends State<Grids> {
                                    counter = 0;
                                    Navigator.pushReplacementNamed(context, '/results');
                                  }
-
                                },
                                child: Container(
                                  child: new Image.asset(

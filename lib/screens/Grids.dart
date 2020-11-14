@@ -1,21 +1,9 @@
-<<<<<<< Updated upstream
-import 'dart:collection';
-
-=======
 import 'dart:async';
 import 'dart:collection';
->>>>>>> Stashed changes
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:xgridz/classes/BaseAppBar.dart';
 import 'dart:math';
-<<<<<<< Updated upstream
-
-String imageName = 'image0';
-
-class ImageGenerator{
-  ImageGenerator();
-=======
 import 'package:xgridz/classes/data.dart';
 
 String correctName;
@@ -33,7 +21,6 @@ void waitOnPressed(BuildContext context) {
             ()=> Navigator.pushReplacementNamed(context, '/results'));
   }
 
->>>>>>> Stashed changes
 }
 
 class Grids extends StatefulWidget {
@@ -47,12 +34,9 @@ class _GridsState extends State<Grids> {
   Widget build(BuildContext context) {
     int imageSize = 32;
     Set<int> intSet = new HashSet<int>();
-<<<<<<< Updated upstream
-=======
     var indexList = [];
     String imageName;
     String header;
->>>>>>> Stashed changes
     return SafeArea(
       child: Scaffold(
         appBar: PreferredSize(
@@ -105,31 +89,6 @@ class _GridsState extends State<Grids> {
                              index = random.nextInt(imageSize);
                            }
                            intSet.add(index);
-<<<<<<< Updated upstream
-                           imageName = index < 9 ?
-                           'images/image0${index + 1}.jpg' : 'images/image${index + 1}.jpg';
-                           return Card(
-                             elevation: 3.0,
-                             margin: EdgeInsets.all(10),
-                             child: InkWell(
-                               splashColor: Colors.blue,
-                               splashFactory: InkRipple.splashFactory,
-                               onTap: () {
-                                 intSet.clear();
-                                 counter++;
-                                 if (counter < gridValue){
-                                   Navigator.pushReplacementNamed(context, '/grids');
-                                 }
-                                 else{
-                                   counter = 0;
-                                   Navigator.pushReplacementNamed(context, '/results');
-                                 }
-                               },
-                               child: Container(
-                                 child: new Image.asset(
-                                     imageName,
-                                     fit: BoxFit.fill
-=======
                            indexList.add(index);
                            imageName = imageList[index].imagePick;
                            Random random1 = new Random();
@@ -152,7 +111,6 @@ class _GridsState extends State<Grids> {
                                        counter++;
                                        waitOnPressed(context);
                            },
->>>>>>> Stashed changes
                                  ),
                              )
                            )

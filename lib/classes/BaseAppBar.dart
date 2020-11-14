@@ -14,11 +14,13 @@ class ImageSelector {
   final String imagePick;
   final String name;
   final String type;
+  final int value;
 
   const ImageSelector({
     @required this.imagePick,
     @required this.name,
     @required this.type,
+    @required this.value,
   });
 }
 class BaseAppBar {

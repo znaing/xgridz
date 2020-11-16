@@ -22,6 +22,7 @@ class _ResultsState extends State<Results> {
                 iconSize: 50,
                 onPressed: () {
                   Navigator.pushReplacementNamed(context, '/home');
+                  scoreCount = 0;
                 }),
             title: Text('Results', style: TextStyle(fontSize: 40)),
           ),
@@ -30,11 +31,13 @@ class _ResultsState extends State<Results> {
           children:[
             Container(
               padding: EdgeInsets.all(20),
-                child: Text
-                  ("Final Result: $scoreCount / $gridValue", style: TextStyle
-                  (fontSize: 50, 
-                    fontWeight: FontWeight.bold
-                )
+                child: Center(
+                  child: Text
+                    ("Final Result: $scoreCount / $gridValue", style: TextStyle
+                    (fontSize: 50,
+                      fontWeight: FontWeight.bold
+                  )
+                  ),
                 )
             )
           ]

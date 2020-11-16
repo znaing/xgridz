@@ -8,6 +8,7 @@ import 'package:xgridz/classes/data.dart';
 
 String correctName;
 int correctVal = 0;
+int numOfCards = 0;
 void waitOnPressed(BuildContext context) {
   if (counter < gridValue){
     correctVal = 0;
@@ -24,19 +25,30 @@ void waitOnPressed(BuildContext context) {
 }
 
 class Grids extends StatefulWidget {
-
   @override
   _GridsState createState() => _GridsState();
 }
 
 class _GridsState extends State<Grids> {
+  Future getFutureHeader;
+  int imageSize = 32;
+  Set<int> intSet = new HashSet<int>();
+  String imageName;
+  String header = '';
+  bool slotPicked = false;
+  int countTrack = -1;
+  int winner = -1;
+  @override
+  void initState() {
+    super.initState();
+    getFutureHeader = _getHeader(header);
+  }
+
+_getHeader(header) async {
+    return header;
+}
   @override
   Widget build(BuildContext context) {
-    int imageSize = 32;
-    Set<int> intSet = new HashSet<int>();
-    var indexList = [];
-    String imageName;
-    String header;
     return SafeArea(
       child: Scaffold(
         appBar: PreferredSize(
@@ -50,6 +62,7 @@ class _GridsState extends State<Grids> {
                   onPressed: () {
                     counter = 0;
                     correctVal = 0;
+                    scoreCount = 0;
                     Navigator.pushReplacementNamed(context, '/start');
                   },
                 ),
@@ -65,11 +78,16 @@ class _GridsState extends State<Grids> {
                        Container(
                          margin: EdgeInsets.only(left: 0, top: 10, right: 0, bottom: 50),
                          child: Center(
+                           child: FutureBuilder(
+                             future: getFutureHeader,
+                             builder: (context, snapshot){
+                               if (snapshot.hasData){
+                                 return Text("Find the $header", style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold));
+                               }
+                               else
+                                 return Text("Waiting...", style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold));
 
-                           child: Text(
-                             "Find the $header",
-                             style:
-                             TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
+                             }
                            ),
                          ),
                        ),
@@ -83,18 +101,47 @@ class _GridsState extends State<Grids> {
                          crossAxisSpacing: 20.0,
                          //_buildGridTiles(verticalValue * horizontalValue),
                          children: List.generate(verticalValue * horizontalValue, (index) {
+                           numOfCards = verticalValue * horizontalValue;
                            Random random = new Random();
                            index = random.nextInt(imageSize);
                            while(intSet.contains(index)) {
                              index = random.nextInt(imageSize);
                            }
+                           countTrack++;
                            intSet.add(index);
-                           indexList.add(index);
                            imageName = imageList[index].imagePick;
-                           Random random1 = new Random();
-                           int correctVal = indexList[random1.nextInt(indexList.length)];   //random picks element from list
-                           header = imageList[correctVal].name;
-                           return new Card(
+                           Random random3 = new Random();
+                           if (!slotPicked) {
+                             winner = random3.nextInt(numOfCards);
+                             slotPicked = true;
+                           }
+
+                           if (countTrack == winner){
+                             header = imageList[index].name;
+                             _getHeader(header);
+                             return Card(                         // This card is Correct!
+                                 shadowColor: Colors.blue,
+                                 elevation: 3.0,
+                                 margin: EdgeInsets.all(10),
+                                 child: Container(
+                                     child: new Ink.image(
+                                       image: AssetImage(imageName),
+                                       fit: BoxFit.scaleDown,
+                                       child: InkWell(
+                                         splashColor: Colors.green,
+                                         splashFactory: InkRipple.splashFactory,
+                                         onTap: () {
+                                           scoreCount++;
+                                           intSet.clear();
+                                           counter++;
+                                           waitOnPressed(context);
+                                         },
+                                       ),
+                                     )
+                                 )
+                             );
+                           }
+                           return Card(     // These cards are wrong!
                              shadowColor: Colors.blue,
                              elevation: 3.0,
                              margin: EdgeInsets.all(10),
@@ -103,11 +150,10 @@ class _GridsState extends State<Grids> {
                                  image: AssetImage(imageName),
                                  fit: BoxFit.scaleDown,
                                      child: InkWell(
-                                       splashColor: Colors.blue,
+                                       splashColor: Colors.red,
                                        splashFactory: InkRipple.splashFactory,
                                        onTap: () {
                                        intSet.clear();
-                                       indexList.clear();
                                        counter++;
                                        waitOnPressed(context);
                            },

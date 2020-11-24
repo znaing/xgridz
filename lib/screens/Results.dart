@@ -69,7 +69,7 @@ class _ResultsState extends State<Results> {
                             alignment: Alignment.centerLeft,
                               height: 50,
                               child: Text(
-                                "$listCount. " + detailedResults[index].correctChoice, style: TextStyle(fontSize: 28, color: Colors.red, fontWeight: FontWeight.bold),
+                                "$listCount. " + detailedResults[index].pickedCard + " (Answer was: " + detailedResults[index].correctChoice + ")", style: TextStyle(fontSize: 28, color: Colors.red, fontWeight: FontWeight.bold),
                               )
                           )
                       );

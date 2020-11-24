@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:xgridz/constants/SettingsValues.dart'; //remove later
+import 'package:xgridz/classes/BaseAppBar.dart';
+import 'dart:io';
 
 /* Dart file I created to store the AppBar that might be reused on several different pages, this page contains all the
 necessary code for the icons and where they go. The base app bar is used for the home screen and the returning one I used
@@ -11,12 +13,14 @@ int gridValue = 5;
 int counter = 0;
 int scoreCount = 0;
 class IndividualResults{
-  final String correctChoice;
+  final String pickedCard;
   final bool pick;
+  final String correctChoice;
   IndividualResults(
   {
-    @required this.correctChoice,
+    @required this.pickedCard,
     @required this.pick,
+    @required this.correctChoice,
   });
 }
 var detailedResults = [];

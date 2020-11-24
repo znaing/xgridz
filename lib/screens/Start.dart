@@ -198,7 +198,7 @@ class AddCustomImagesButton extends StatelessWidget {
       color: Colors.blue,
       elevation: 5,
       onPressed: () { // Respond to button press
-
+        Navigator.pushReplacementNamed(context, '/custom');
       },
       child: Text(
         "Add Custom Images",

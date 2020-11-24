@@ -5,6 +5,7 @@ import 'package:flutter/rendering.dart';
 import 'package:xgridz/classes/BaseAppBar.dart';
 import 'dart:math';
 import 'package:xgridz/classes/data.dart';
+import 'dart:io';
 
 String correctName;
 int correctVal = 0;
@@ -34,6 +35,7 @@ class _GridsState extends State<Grids> {
   int imageSize = imageList.length;
   Set<int> intSet = new HashSet<int>();
   String imageName;
+  File imageFile;
   String header = '';
   bool slotPicked = false;
   int countTrack = -1;
@@ -115,7 +117,6 @@ _getHeader(header) async {
                              winner = random3.nextInt(numOfCards);
                              slotPicked = true;
                            }
-
                            if (countTrack == winner){
                              header = imageList[index].name;
                              _getHeader(header);
@@ -131,7 +132,7 @@ _getHeader(header) async {
                                          splashColor: Colors.green,
                                          splashFactory: InkRipple.splashFactory,
                                          onTap: () {
-                                           var scoreObj = new IndividualResults(correctChoice: imageList[index].name, pick: true);
+                                           var scoreObj = new IndividualResults(pickedCard: imageList[index].name, pick: true, correctChoice: header);
                                            detailedResults.add(scoreObj);
                                            scoreCount++;
                                            intSet.clear();
@@ -139,7 +140,7 @@ _getHeader(header) async {
                                            waitOnPressed(context);
                                          },
                                          onLongPress: () {
-                                           var scoreObj = new IndividualResults(correctChoice: imageList[index].name, pick: true);
+                                           var scoreObj = new IndividualResults(pickedCard: imageList[index].name, pick: true, correctChoice: header);
                                            detailedResults.add(scoreObj);
                                            intSet.clear();
                                            counter++;
@@ -162,14 +163,14 @@ _getHeader(header) async {
                                        splashColor: Colors.red,
                                        splashFactory: InkRipple.splashFactory,
                                        onLongPress: () {
-                                         var scoreObj = new IndividualResults(correctChoice: imageList[index].name, pick: false);
+                                         var scoreObj = new IndividualResults(pickedCard: imageList[index].name, pick: false, correctChoice: header);
                                          detailedResults.add(scoreObj);
                                          intSet.clear();
                                          counter++;
                                          waitOnPressed(context);
                                        },
-                                       onTap: () {
-                                       var scoreObj = new IndividualResults(correctChoice: imageList[index].name, pick: false);
+                                       onTap: (){
+                                       var scoreObj = new IndividualResults(pickedCard: imageList[index].name, pick: false, correctChoice: header);
                                        detailedResults.add(scoreObj);
                                        intSet.clear();
                                        counter++;

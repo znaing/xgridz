@@ -10,6 +10,16 @@ int verticalValue = 4;
 int gridValue = 5;
 int counter = 0;
 int scoreCount = 0;
+class IndividualResults{
+  final String correctChoice;
+  final bool pick;
+  IndividualResults(
+  {
+    @required this.correctChoice,
+    @required this.pick,
+  });
+}
+var detailedResults = [];
 class ImageSelector {
   final String imagePick;
   final String name;

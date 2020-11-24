@@ -12,13 +12,13 @@ int numOfCards = 0;
 void waitOnPressed(BuildContext context) {
   if (counter < gridValue){
     correctVal = 0;
-    Timer(Duration(milliseconds: 400),
+    Timer(Duration(milliseconds: 30),
             ()=> Navigator.pushReplacementNamed(context, '/grids'));
   }
   else{
     counter = 0;
     correctVal = 0;
-    Timer(Duration(milliseconds: 400),
+    Timer(Duration(milliseconds: 30),
             ()=> Navigator.pushReplacementNamed(context, '/results'));
   }
 
@@ -31,7 +31,7 @@ class Grids extends StatefulWidget {
 
 class _GridsState extends State<Grids> {
   Future getFutureHeader;
-  int imageSize = 32;
+  int imageSize = imageList.length;
   Set<int> intSet = new HashSet<int>();
   String imageName;
   String header = '';
@@ -93,14 +93,14 @@ _getHeader(header) async {
                        ),
                        GridView.count(
                          shrinkWrap: true,
+                         physics: ScrollPhysics(),
                          // Create a grid with 2 columns. If you change the scrollDirection to
                          // horizontal, this produces 2 rows.
                          padding: EdgeInsets.all(16.0),
-                         crossAxisCount: horizontalValue,// setting this to horizontal value properly fits correct amount of items in grid rows
+                         crossAxisCount: verticalValue,// setting this to horizontal value properly fits correct amount of items in grid rows
                          mainAxisSpacing: 20.0,
                          crossAxisSpacing: 20.0,
-                         //_buildGridTiles(verticalValue * horizontalValue),
-                         children: List.generate(verticalValue * horizontalValue, (index) {
+                         children: List.generate(horizontalValue * verticalValue , (index) {
                            numOfCards = verticalValue * horizontalValue;
                            Random random = new Random();
                            index = random.nextInt(imageSize);
@@ -131,7 +131,16 @@ _getHeader(header) async {
                                          splashColor: Colors.green,
                                          splashFactory: InkRipple.splashFactory,
                                          onTap: () {
+                                           var scoreObj = new IndividualResults(correctChoice: imageList[index].name, pick: true);
+                                           detailedResults.add(scoreObj);
                                            scoreCount++;
+                                           intSet.clear();
+                                           counter++;
+                                           waitOnPressed(context);
+                                         },
+                                         onLongPress: () {
+                                           var scoreObj = new IndividualResults(correctChoice: imageList[index].name, pick: true);
+                                           detailedResults.add(scoreObj);
                                            intSet.clear();
                                            counter++;
                                            waitOnPressed(context);
@@ -152,7 +161,16 @@ _getHeader(header) async {
                                      child: InkWell(
                                        splashColor: Colors.red,
                                        splashFactory: InkRipple.splashFactory,
+                                       onLongPress: () {
+                                         var scoreObj = new IndividualResults(correctChoice: imageList[index].name, pick: false);
+                                         detailedResults.add(scoreObj);
+                                         intSet.clear();
+                                         counter++;
+                                         waitOnPressed(context);
+                                       },
                                        onTap: () {
+                                       var scoreObj = new IndividualResults(correctChoice: imageList[index].name, pick: false);
+                                       detailedResults.add(scoreObj);
                                        intSet.clear();
                                        counter++;
                                        waitOnPressed(context);

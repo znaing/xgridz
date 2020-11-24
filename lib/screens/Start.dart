@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'dart:io';
+import 'package:image_picker/image_picker.dart';
 import 'package:xgridz/classes/BaseAppBar.dart';
 
 class Start extends StatefulWidget {
@@ -37,6 +39,7 @@ class _StartState extends State<Start> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               ListView(
+                physics: const NeverScrollableScrollPhysics(),
                 scrollDirection: Axis.vertical,
                 shrinkWrap: true,
                 padding: EdgeInsets.all(0),
@@ -128,12 +131,25 @@ class _StartState extends State<Start> {
                       value: _currentGridsSelected,
                     ),
                   ),
-                  Container(
-                    height: 50.0,
-                    child: EnterButton(_currentHorizontalSelected, _currentVerticalSelected, _currentGridsSelected),
-                    margin: const EdgeInsets.only(
-                        left: 320, top: 50, right: 320, bottom: 0),
+                  Row(
+                    children: [
+                      Container(
+                        height: 50.0,
+                        width: 150,
+                        child: EnterButton(_currentHorizontalSelected, _currentVerticalSelected, _currentGridsSelected),
+                        margin: const EdgeInsets.only(
+                            left: 300, top: 50, right: 10, bottom: 0),
+                      ),
+                      Container(
+                        height: 50.0,
+                        width: 340,
+                        child: AddCustomImagesButton(),
+                        margin: const EdgeInsets.only(
+                            left: 150, top: 50, right: 10, bottom: 0),
+                      ),
+                    ],
                   ),
+
                 ],
               ),
             ],
@@ -156,9 +172,10 @@ class EnterButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return (RaisedButton.icon(
+    return (RaisedButton(
       textColor: Colors.white,
       color: Colors.blue,
+      elevation: 5,
       onPressed: () {
         // Respond to button press
         horizontalValue = horizontalVal;
@@ -166,9 +183,25 @@ class EnterButton extends StatelessWidget {
         gridValue = gridVal;
         Navigator.pushReplacementNamed(context, '/grids');
       },
-      icon: Icon(Icons.add, size: 18),
-      label: Text(
-        "Enter",
+      child: Text(
+        "Start",
+        style: TextStyle(fontSize: 30),
+      ),
+    ));
+  }
+}
+class AddCustomImagesButton extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return (RaisedButton(
+      textColor: Colors.white,
+      color: Colors.blue,
+      elevation: 5,
+      onPressed: () { // Respond to button press
+
+      },
+      child: Text(
+        "Add Custom Images",
         style: TextStyle(fontSize: 30),
       ),
     ));

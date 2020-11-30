@@ -9,8 +9,8 @@ class Start extends StatefulWidget {
 }
 
 class _StartState extends State<Start> {
-  var _horizontalVal = ['1', '2', '3', '4', '5', '6', '7', '8'];
-  var _verticalVal = ['1', '2', '3', '4'];
+  var _horizontalVal = ['1', '2', '3', '4'];
+  var _verticalVal = ['1', '2', '3', '4', '5', '6', '7', '8'];
   var _numberOfGrids = ['5', '10', '15', '20'];
   var _currentHorizontalSelected = '4';
   var _currentVerticalSelected = '4';

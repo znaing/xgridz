@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:xgridz/constants/SettingsValues.dart'; //remove later
-import 'package:xgridz/classes/BaseAppBar.dart';
-import 'dart:io';
 
 /* Dart file I created to store the AppBar that might be reused on several different pages, this page contains all the
 necessary code for the icons and where they go. The base app bar is used for the home screen and the returning one I used
@@ -47,13 +44,13 @@ class BaseAppBar {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             appBarIcon(Icons.help_outline_outlined, "Help", context),
-            appBarIcon(Icons.search, "Data", context),
+            //appBarIcon(Icons.search, "Data", context),
             Text('XGridZ',
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 55,
                 )),
-            appBarIcon(Icons.settings, "Settings", context),
+           // appBarIcon(Icons.settings, "Settings", context),
             appBarIcon(Icons.arrow_forward_rounded, "Start", context),
           ],
         ),

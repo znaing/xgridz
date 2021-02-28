@@ -44,13 +44,13 @@ class BaseAppBar {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             appBarIcon(Icons.help_outline_outlined, "Help", context),
-            //appBarIcon(Icons.search, "Data", context),
+            appBarIcon(Icons.search, "Data", context),
             Text('XGridZ',
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 55,
                 )),
-           // appBarIcon(Icons.settings, "Settings", context),
+            appBarIcon(Icons.settings, "Settings", context),
             appBarIcon(Icons.arrow_forward_rounded, "Start", context),
           ],
         ),

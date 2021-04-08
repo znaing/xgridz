@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:xgridz/screens/Login.dart';
+import 'package:xgridz/screens/Signup.dart';
 import 'package:xgridz/screens/Home.dart';
 import 'package:xgridz/screens/Loading.dart';
 import 'package:xgridz/screens/Settings.dart';
@@ -16,6 +18,8 @@ class xGridZ extends StatelessWidget {
       title: "xGridZ",
       routes: {
       '/': (context) => Loading(),
+      '/login': (context) => Login(),
+      '/signup': (context) => Signup(),
       '/home': (context) => Home(),
       '/settings': (context) => Settings(),
       '/start': (context) => Start(),
